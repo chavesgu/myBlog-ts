@@ -1,0 +1,70 @@
+/* 改变主题色变量 */
+$--color-primary: #FFAE3F;
+$--color-info: #409EFF;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+//@import "~element-ui/packages/theme-chalk/src/index";
+
+
+a{
+  color: $--color-primary;
+  &:focus{
+    outline: 0;
+  }
+}
+
+
+/*loading-css-start*/
+.el-loading-spinner{
+  margin-top: -50px;
+}
+.el-loading-spinner .circular{
+  width: 100px;
+  height: 100px;
+}
+.el-loading-spinner .path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-width: 5px;
+  -webkit-animation: loading-dash 1.5s ease-in-out infinite, loading-color 6s ease-in-out infinite;
+  animation: loading-dash 1.5s ease-in-out infinite, loading-color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes loading-rotate {
+  100% {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn);
+  }
+}
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+@keyframes loading-color {
+  0%, 100% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%, 90% {
+    stroke: #ffa700;
+  }
+}
+/*loading-css-over*/

@@ -1,0 +1,38 @@
+{
+  "name": "vue-ts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "element-ui": "^2.4.4",
+    "qs": "^6.5.2",
+    "vue": "^2.5.16",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^7.0.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.5.1",
+    "@types/webpack": "^4.4.7",
+    "@types/webpack-env": "^1.13.6",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
+    "@vue/cli-plugin-typescript": "^3.0.0-rc.5",
+    "@vue/cli-service": "^3.0.0-rc.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-component-scss": "^1.1.1",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.16",
+    "vuex-class": "^0.3.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
