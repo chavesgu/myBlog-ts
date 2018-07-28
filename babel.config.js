@@ -3,7 +3,7 @@ module.exports = {
     ['@vue/app',{}]
   ],
   plugins: [
-    "syntax-dynamic-import",
+    "syntax-dynamic-import","equire",
     [
       "component-scss",
       {

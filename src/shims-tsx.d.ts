@@ -11,3 +11,10 @@ declare global {
     }
   }
 }
+
+// declare module 'prismjs' {
+//   export function highlight(html:string,languages:string): any;
+//   export let languages:{
+//     [key: string]: any
+//   }
+// }

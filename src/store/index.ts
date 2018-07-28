@@ -19,7 +19,23 @@ for (let val of filenames){ // 遍历store下获取到的文件
 const option:StoreOptions<RootState> = {
   state: {
     version: '1.0',
-    globalLoad: false
+    globalLoad: false,
+    articleBgList: [`#72616e`, `#e8846b`, `#16528e`, `#e54b4b`, `#a2c5bf`, `#167c80`, `#0082c8`],
+    articleList:[
+      'c19930903-1',
+      'c19930903-2',
+      'c19930903-3',
+      'c19930903-4',
+      'c19930903-5',
+      'c19930903-6',
+      'c19930903-7',
+      'c19930903-8',
+      'c19930903-9',
+      'c19930903-10',
+    ]
+  },
+  getters:{
+
   },
   mutations: {
     loadingStart(state:RootState){

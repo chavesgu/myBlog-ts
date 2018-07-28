@@ -1,15 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router/'
 import store from './store/'
-
+import router from './router/'
 import './element'
-import './assets/theme/index.scss'
+import './echarts'
+import './utils/directive';
+import VueMeta from 'vue-meta'
+
+// import css
+import "./assets/reset.css";
+import './assets/theme/index.scss';
+import 'prismjs/themes/prism-okaidia.css'
+
+Vue.use(VueMeta);
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
   store,
+  router,
   render: h => h(App)
 }).$mount('#app')

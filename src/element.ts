@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import {
   // Pagination,
   Dialog,
@@ -11,20 +12,20 @@ import {
   // MenuItemGroup,
   Input,
   // InputNumber,
-  Radio,
-  RadioGroup,
-  RadioButton,
+  // Radio,
+  // RadioGroup,
+  // RadioButton,
   // Checkbox,
   // CheckboxButton,
   // CheckboxGroup,
   // Switch,
-  Select,
-  Option,
+  // Select,
+  // Option,
   // OptionGroup,
   Button,
   ButtonGroup,
-  Table,
-  TableColumn,
+  // Table,
+  // TableColumn,
   // DatePicker,
   // TimeSelect,
   // TimePicker,
@@ -34,18 +35,19 @@ import {
   // BreadcrumbItem,
   Form,
   FormItem,
-  // Tabs,
-  // TabPane,
-  Tag,
+  Tabs,
+  TabPane,
+  // Tag,
   // Tree,
   // Alert,
   // Slider,
+  // Icon,
   // Row,
   // Col,
   Upload,
   Progress,
   // Badge,
-  // Card,
+  Card,
   // Rate,
   // Steps,
   // Step,
@@ -62,11 +64,11 @@ import {
   // Main,
   // Footer,
   Loading,
-  // MessageBox,
+  MessageBox,
   Message,
   // Notification
 } from 'element-ui';
-import Vue from 'vue';
+Vue.prototype.$ELEMENT = { size: 'medium' };
 
 // Vue.use(Pagination);
 Vue.use(Dialog);
@@ -80,20 +82,20 @@ Vue.use(MenuItem);
 // Vue.use(MenuItemGroup);
 Vue.use(Input);
 // Vue.use(InputNumber);
-Vue.use(Radio);
-Vue.use(RadioGroup);
-Vue.use(RadioButton);
+// Vue.use(Radio);
+// Vue.use(RadioGroup);
+// Vue.use(RadioButton);
 // Vue.use(Checkbox);
 // Vue.use(CheckboxButton);
 // Vue.use(CheckboxGroup);
 // Vue.use(Switch);
-Vue.use(Select);
-Vue.use(Option);
+// Vue.use(Select);
+// Vue.use(Option);
 // Vue.use(OptionGroup);
 Vue.use(Button);
 Vue.use(ButtonGroup);
-Vue.use(Table);
-Vue.use(TableColumn);
+// Vue.use(Table);
+// Vue.use(TableColumn);
 // Vue.use(DatePicker);
 // Vue.use(TimeSelect);
 // Vue.use(TimePicker);
@@ -103,18 +105,19 @@ Vue.use(TableColumn);
 // Vue.use(BreadcrumbItem);
 Vue.use(Form);
 Vue.use(FormItem);
-// Vue.use(Tabs);
-// Vue.use(TabPane);
-Vue.use(Tag);
+Vue.use(Tabs);
+Vue.use(TabPane);
+// Vue.use(Tag);
 // Vue.use(Tree);
 // Vue.use(Alert);
 // Vue.use(Slider);
+// Vue.use(Icon);
 // Vue.use(Row);
 // Vue.use(Col);
 Vue.use(Upload);
 Vue.use(Progress);
 // Vue.use(Badge);
-// Vue.use(Card);
+Vue.use(Card);
 // Vue.use(Rate);
 // Vue.use(Steps);
 // Vue.use(Step);
@@ -129,13 +132,13 @@ Vue.use(Progress);
 // Vue.use(Aside);
 // Vue.use(Main);
 // Vue.use(Footer);
-
+//
 const LOADING_DIRECTIVE:any = Loading.directive;
 Vue.use(LOADING_DIRECTIVE);
-
-// Vue.prototype.$loading = Loading.service;
+//
+Vue.prototype.$loading = Loading.service;
 // Vue.prototype.$msgbox = MessageBox;
-// Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$alert = MessageBox.alert;
 // Vue.prototype.$confirm = MessageBox.confirm;
 // Vue.prototype.$prompt = MessageBox.prompt;
 // Vue.prototype.$notify = Notification;

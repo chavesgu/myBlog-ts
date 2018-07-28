@@ -3,5 +3,7 @@
 
 export interface RootState{
   version: string;
-  globalLoad: boolean
+  globalLoad: boolean;
+  articleBgList:string[];
+  articleList:any
 }
