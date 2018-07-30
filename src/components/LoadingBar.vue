@@ -2,7 +2,7 @@
   <div class="loading-bar" :style="{
         'width': percent + '%',
         'height': height,
-        'background-color': canSuccess ? color : failedColor,
+        'background-color': color,
         'opacity': show ? 1 : 0
     }"></div>
 </template>
@@ -12,15 +12,24 @@
 
   @Component({})
   export default class LoadingBar extends Vue {
-    percent = 0;
-    show = false;
-    canSuccess = true;
-    duration = 3000;
-    height = '3px';
-    color = '#47e487';
-    failedColor = '#ff0000';
-    _timer = null;
-    _cut = null;
+    percent:number = 0;
+    show:boolean = false;
+    canSuccess:boolean = true;
+    duration:number = 3000;
+    height:string = '3px';
+    _timer:any = NaN;
+    _cut:number = NaN;
+
+
+    get color():string{
+      if (this.percent===100){
+        return '#47e487'
+      }
+      if (this.percent===0){
+        return '#ff0000'
+      }
+      return ''
+    }
 
 
     start() {
@@ -39,7 +48,7 @@
       }, 100);
       return this;
     };
-    set(num) {
+    set(num:number) {
       this.show = true;
       this.canSuccess = true;
       this.percent = Math.floor(num);
@@ -48,11 +57,11 @@
     get() {
       return Math.floor(this.percent);
     };
-    increase(num) {
+    increase(num:number) {
       this.percent = this.percent + Math.floor(num);
       return this;
     };
-    decrease(num) {
+    decrease(num:number) {
       this.percent = this.percent - Math.floor(num);
       return this;
     };
@@ -67,7 +76,7 @@
     };
     hide() {
       clearInterval(this._timer);
-      this._timer = null;
+      this._timer = undefined;
       setTimeout(() => {
         this.show = false;
         this.$nextTick(() => {

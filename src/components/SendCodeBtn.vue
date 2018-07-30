@@ -10,14 +10,14 @@
 
   @Component({})
   export default class SendCodeBtn extends Vue {
-    sendingCode=false;
-    sendTime=0;
-    timer=null;
+    sendingCode:boolean=false;
+    sendTime:number=0;
+    timer:any=NaN;
 
     @Prop({default:false,required:true}) startTiming:boolean;
 
     @Watch('startTiming')
-    startTimingChange(newV,oldV){
+    startTimingChange(newV:boolean,oldV:boolean){
       if (newV && !oldV){
         this.startTimer();
       }

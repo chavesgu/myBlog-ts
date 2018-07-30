@@ -36,9 +36,9 @@
     get user():any{
       return myCookie.getItem("user") || null;
     };
-    get menuArr():Array{
+    get menuArr():object[]{
       return this.$router['options'].routes[1].children
-        .filter(item=>item.meta.show);
+        .filter((item:{meta:{show:boolean}})=>item.meta.show);
     };
 
     goPage(index:string,path:string){

@@ -99,7 +99,7 @@ const opt:RouterOptions = {
             show: false
           },
           redirect:{name:'change-pass'},
-          component: ()=>import(/* webpackChunkName: "changepass" */ '@/views/ChangePass/Index.vue'),
+          component: ()=>import(/* webpackChunkName: "changepass" */ '@/views/ChangePass.vue'),
           children:[
             {
               path:'pass',
@@ -172,7 +172,7 @@ router.beforeEach((to, from, next)=>{
   if (to.meta.check){
     if (myCookie.getItem("user")) {
       if (to.meta.getInfo){
-        router.app.$store.dispatch('info/getInfo')
+        router.app.$store.dispatch('user/getUserInfo')
           .then(_=>next()).catch(_=>next());
       }else {
         next();

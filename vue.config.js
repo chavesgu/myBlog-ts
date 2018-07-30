@@ -91,7 +91,15 @@ module.exports = {
     https: false,
     hotOnly: false,
     // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/cli-service.md#配置代理
-    proxy: null, // string | Object
+    proxy: {
+      '/api':{
+        target: 'https://admin.chavesgu.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }, // string | Object
     before: app => {}
   },
 

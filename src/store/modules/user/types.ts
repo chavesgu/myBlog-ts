@@ -1,8 +1,8 @@
 export interface State {
-  msg:number
-}
-
-export interface Login {
-  user:string,
-  password:string
+  info:{
+    user?:string,
+    photo?:string,
+    email?:string,
+    phone?:number
+  }|null
 }

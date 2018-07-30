@@ -15,7 +15,7 @@ Axios.interceptors.request.use(config => {
 Axios.interceptors.response.use(response => {
   //对响应数据做些事，比如说把loading动画关掉
   store.commit('loadingOver');
-  return response
+  return response.data
 }, error => {
   //请求错误时做些事
   // if (error.response.status===401){
@@ -27,7 +27,7 @@ Axios.interceptors.response.use(response => {
 
 
 export default Axios.create({
-  baseURL: 'https://some-domain.com/api',
+  baseURL: process.env.NODE_ENV==="development"?'/api':'https://admin.chavesgu.com',
 
   transformRequest: [function (data, headers) {
     // Do whatever you want to transform the data

@@ -24,7 +24,7 @@
     }
   })
   export default class Blog extends Vue {
-    @State('articleBgList') articleBgList:Array;
+    @State('articleBgList') articleBgList:string[];
 
     articleList = [];
 

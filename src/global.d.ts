@@ -1,4 +1,5 @@
 
+
 declare module 'prismjs' {
   export function highlight(html:string,languages:string): any;
   export let languages:{
@@ -13,4 +14,15 @@ declare module 'qiniu-js' {
   }
 }
 
+declare module 'crypto-js'{
+  export function SHA256(str:string):any;
+  export let enc:{
+    [key: string]: any
+  }
+}
+
 declare function equire(array:string[]):any;
+
+declare module '@tweenjs/tween.js'{
+
+}

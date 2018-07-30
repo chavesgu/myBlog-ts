@@ -30,7 +30,7 @@
   import {Component, Vue} from 'vue-property-decorator';
   import {namespace} from 'vuex-class';
   import * as qiniu from 'qiniu-js'
-  import myCookie from '@/assets/utils/cookie'
+  import myCookie from '@/utils/cookie'
 
   @Component({
     metaInfo:{
@@ -38,20 +38,23 @@
     }
   })
   export default class Admin extends Vue {
-    @namespace('info').State('info') info:object;
+    @namespace('user').State('info') info:object;
+    @namespace('user').Action('qiniuToken') qiniuToken:any;
+    @namespace('user').Action('saveUserInfo') saveUserInfo:any;
+    @namespace('user').Action('getUserInfo') getUserInfo:any;
 
-    file=null;
-    filename='';
-    canUpload=false;
-    uploadToken=null;
-    uploadPercent=0;
-    progressColor='#409EFF';
+    file:string='';
+    filename:string='';
+    canUpload:boolean=false;
+    uploadToken:string='';
+    uploadPercent:number=0;
+    progressColor:string='#409EFF';
 
     get user(){
       return this.$route.params['userName'] || '';
     }
 
-    upload(file){
+    upload(file:any){
       if (file.size/1024/1024 > 2){
         this.uploadMaxSize();
         return false
@@ -60,16 +63,16 @@
         this.uploadFormatError();
         return false
       }
-      this.$store.dispatch('info/qiniuToken',file).then(res=>{
-        if (res.code===200){
+      this.qiniuToken().then((data:any)=>{
+        if (data.code===200){
           this.file = file;
           this.filename = myCookie.getItem('user')+'.jpg';
-          this.uploadToken=res.uploadToken;
+          this.uploadToken=data.uploadToken;
           this.canUpload = true;
           this.uploadPercent = 0;
         }
-      }).catch(err=>{
-        this.$alert(err.toString(),{
+      }).catch((err:any)=>{
+        this.$alert('get photo token fail',{
           title:'Message',
           type:'error'
         })
@@ -91,42 +94,42 @@
       );
       let _this = this;
       let subscription = observable.subscribe({
-        next(res){
+        next(res:any){
           // ...
           _this.uploadPercent = res.total.percent;
         },
-        error(err){
+        error(err:any){
           // ...
           console.log(err);
         },
-        complete(res){
+        complete(res:any){
           // ...
           _this.progressColor = '#67c23a';
-          _this.$store.dispatch('info/saveInfo',{photo:`//profile.chavesgu.com/${myCookie.getItem('user')}.jpg?time=${+new Date()}`})
-            .then(data=>{
-              if (data.code===200){
-                _this.$store.dispatch('info/getInfo');
-              }else {
-                _this.$alert(data.msg,{
-                  title:'Message',
-                  type:'error'
-                })
-              }
-              _this.file = null;
-              _this.canUpload = false;
-              _this.uploadPercent = 0;
-            });
-          // window.location.reload();
+          _this.saveUserInfo({
+            photo:`//profile.chavesgu.com/${myCookie.getItem('user')}.jpg?time=${+new Date()}`
+          }).then((data:any)=>{
+            if (data.code===200){
+              _this.getUserInfo();
+            }else {
+              _this.$alert(data.msg,{
+                title:'Message',
+                type:'error'
+              })
+            }
+            _this.file = '';
+            _this.canUpload = false;
+            _this.uploadPercent = 0;
+          });
         }
       })
     };
-    uploadFormatError(file?) {
+    uploadFormatError(file?:any) {
       this.$alert('只支持jpg,png,gif格式',{
         title:'Message',
         type:'error'
       })
     };
-    uploadMaxSize(file?) {
+    uploadMaxSize(file?:any) {
       this.$alert('图片大小不能超过2M',{
         title:'Message',
         type:'error'

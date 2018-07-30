@@ -5,7 +5,7 @@ import actions from './Action'
 
 const state = ():State=>{
   return{
-    msg:333
+    info:null
   }
 };
 
@@ -14,8 +14,8 @@ const getters:GetterTree<State,RootState> = {
 };
 
 const mutations:MutationTree<State> = {
-  test(state,res:string){
-    console.log(res)
+  setUserInfo(state,{info}:State){
+    state.info = info
   }
 };
 

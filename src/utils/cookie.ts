@@ -23,7 +23,7 @@ export default {
   getItem: function (sKey:string) {
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
   },
-  setItem: function (sKey:string, sValue:any, vEnd:any, sPath:string, sDomain:string, bSecure:boolean) {
+  setItem: function (sKey:string, sValue:any, vEnd?:any, sPath?:string, sDomain?:string, bSecure?:boolean) {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
     var sExpires = "";
     if (vEnd) {
