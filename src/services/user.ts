@@ -12,7 +12,7 @@ export const USER_REGISTER = ({user,password,email,phone,code}:Register) => {
 };//注册接口
 
 export const USER_LOGIN = ({user,password}:Login) => {
-  return api.post('/login',{user,password});
+  return api.post('/signIn',{user,password});
 };//登录接口
 
 export const GET_INFO = () => {

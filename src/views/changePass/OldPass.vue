@@ -24,6 +24,7 @@
 
   @Component({})
   export default class OldPass extends Vue {
+    $refs:any;
     @namespace('user').Action('oldChangePass') oldChangePass:any;
 
     passInfo = {

@@ -22,7 +22,3 @@ declare module 'crypto-js'{
 }
 
 declare function equire(array:string[]):any;
-
-declare module '@tweenjs/tween.js'{
-
-}

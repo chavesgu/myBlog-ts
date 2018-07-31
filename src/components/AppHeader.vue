@@ -37,7 +37,8 @@
       return myCookie.getItem("user") || null;
     };
     get menuArr():object[]{
-      return this.$router['options'].routes[1].children
+      let router:any = this.$router;
+      return router.options.routes[1].children
         .filter((item:{meta:{show:boolean}})=>item.meta.show);
     };
 

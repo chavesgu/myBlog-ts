@@ -15,7 +15,9 @@
     "types": [
       "node",
       "webpack",
-      "webpack-env"
+      "webpack-env",
+      "qs",
+      "tween.js"
     ],
     "paths": {
       "@/*": [

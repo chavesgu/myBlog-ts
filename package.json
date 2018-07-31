@@ -22,6 +22,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/tween.js": "^16.9.0",
     "@types/qs": "^6.5.1",
     "@types/webpack": "^4.4.7",
     "@types/webpack-env": "^1.13.6",

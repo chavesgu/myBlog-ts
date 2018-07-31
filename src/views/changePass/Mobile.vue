@@ -31,6 +31,7 @@
     components: {SendCode}
   })
   export default class Mobile extends Vue {
+    $refs:any;
     @namespace('user').State(state=>state.info.phone) phone:string;
     @namespace('user').Action('phoneChangePassCode') phoneChangePassCode:any;
     @namespace('user').Action('phoneChangePass') phoneChangePass:any;

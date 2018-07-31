@@ -10,10 +10,7 @@
   import {Vue, Component} from 'vue-property-decorator'
   @Component({
     metaInfo:{
-      title:'Chaves',
-      link: [
-        { rel: 'icon', href: '//images.chavesgu.com/title.ico',type:'img/x-ico' }
-      ]
+      title:'Chaves'
     }
   })
   export default class App extends Vue {

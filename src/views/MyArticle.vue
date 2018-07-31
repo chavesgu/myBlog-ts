@@ -21,13 +21,13 @@
     }
   })
   export default class MyArticle extends Vue {
-    animate=true;
-    bgWidth=0;
-    wordTop=100;
-    tweenOpen=undefined;
-    tweenTop=undefined;
-    loadWord=false;
-    wordContent='';
+    animate:boolean=true;
+    bgWidth:number=0;
+    wordTop:number=100;
+    tweenOpen:any=undefined;
+    tweenTop:any=undefined;
+    loadWord:boolean=false;
+    wordContent:any='';
 
     get bg(){
       return this.$store.state.articleBgList[this.$store.state.articleList.indexOf(this.$route.params['id'])%this.$store.state.articleBgList.length];
@@ -40,23 +40,22 @@
       //   mouseWheelSpeed:10,
       //   disableMouse:true
       // });
-
-      // let animate =()=> {
-      //   if (this.animate){
-      //     requestAnimationFrame(animate);
-      //     TWEEN.update();
-      //   }
-      // };
-      // animate();
-      // this.tweenOpen = new TWEEN['Tween'](_this);
-      // this.tweenTop = new TWEEN['Tween'](_this);
-      // this.tweenOpen.to({bgWidth:100},600).start().onComplete(function () {
-      //   _this.tweenTop.to({wordTop:0},400).start().onComplete(function () {
-      //     _this.tweenTop = undefined;
-      //     _this.tweenOpen = undefined;
-      //     _this.animate = false;
-      //   })
-      // });
+      let animate =()=> {
+        if (this.animate){
+          requestAnimationFrame(animate);
+          TWEEN.update();
+        }
+      };
+      animate();
+      this.tweenOpen = new TWEEN.Tween(_this);
+      this.tweenTop = new TWEEN.Tween(_this);
+      this.tweenOpen.to({bgWidth:100},600).start().onComplete(function () {
+        _this.tweenTop.to({wordTop:0},400).start().onComplete(function () {
+          _this.tweenTop = undefined;
+          _this.tweenOpen = undefined;
+          _this.animate = false;
+        })
+      });
     }
   }
 </script>

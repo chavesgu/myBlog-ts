@@ -28,6 +28,7 @@ import { namespace } from 'vuex-class';
   }
 })
 export default class Home extends Vue {
+  $echarts:any;
   @namespace('user').Action('login') login:any;
 
   msg = 'Welcome to Your Vue.js + TypeScript App';
@@ -76,7 +77,7 @@ export default class Home extends Vue {
         }
       ]
     };
-    let myChart = this['$echarts'].init(this.$refs.chart1,'shine');
+    let myChart = this.$echarts.init(this.$refs.chart1,'shine');
     myChart.setOption(option);
 
     let option2 = {
@@ -102,7 +103,7 @@ export default class Home extends Vue {
         }
       ]
     };
-    let myChart2 = this['$echarts'].init(this.$refs.chart2,'shine');
+    let myChart2 = this.$echarts.init(this.$refs.chart2,'shine');
     myChart2.setOption(option2);
   }
 }

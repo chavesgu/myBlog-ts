@@ -31,6 +31,7 @@
     components: {SendCode},
   })
   export default class Email extends Vue {
+    $refs:any;
     @namespace('user').State(state=>state.info.email) email:string;
     @namespace('user').Action('emailChangePassCode') emailChangePassCode:any;
     @namespace('user').Action('phoneChangePass') phoneChangePass:any;

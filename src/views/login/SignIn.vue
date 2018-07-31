@@ -31,6 +31,7 @@
     }
   })
   export default class SignIn extends Vue {
+    $refs:any;
     @namespace('user').Action('login') login:any;
 
     signInInfo = {

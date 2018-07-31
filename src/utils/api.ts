@@ -1,32 +1,9 @@
-import Axios,{AxiosRequestConfig} from 'axios'
+import Axios,{AxiosInstance} from 'axios'
 import qs from 'qs';
 import store from '../store/'
 
-//添加请求拦截器
-Axios.interceptors.request.use(config => {
-  //在发送请求之前做某事，比如说 设置loading动画显示
-  store.commit('loadingStart');
-  return config
-}, error => {
-  //请求错误时做些事
-  return Promise.reject(error)
-});
-//添加响应拦截器
-Axios.interceptors.response.use(response => {
-  //对响应数据做些事，比如说把loading动画关掉
-  store.commit('loadingOver');
-  return response.data
-}, error => {
-  //请求错误时做些事
-  // if (error.response.status===401){
-  //
-  // }
-  store.commit('loadingOver');
-  return Promise.reject(error)
-});
 
-
-export default Axios.create({
+const api:AxiosInstance = Axios.create({
   baseURL: process.env.NODE_ENV==="development"?'/api':'https://admin.chavesgu.com',
 
   transformRequest: [function (data, headers) {
@@ -36,10 +13,10 @@ export default Axios.create({
 
   // `transformResponse` allows changes to the response data to be made before
   // it is passed to then/catch
-  transformResponse: [function (data) {
-    // Do whatever you want to transform the data
-    return data;
-  }],
+  // transformResponse: [function (data) {
+  //   //   // Do whatever you want to transform the data
+  //   //   return data;
+  //   // }],
 
   // `headers` are custom headers to be sent
   headers: {
@@ -95,3 +72,29 @@ export default Axios.create({
   //   return status >= 200 && status < 300; // default
   // },
 });
+
+
+//添加请求拦截器
+api.interceptors.request.use(config => {
+  //在发送请求之前做某事，比如说 设置loading动画显示
+  store.commit('loadingStart');
+  return config
+}, error => {
+  //请求错误时做些事
+  return Promise.reject(error)
+});
+//添加响应拦截器
+api.interceptors.response.use(response => {
+  //对响应数据做些事，比如说把loading动画关掉
+  store.commit('loadingOver');
+  return response.data
+}, error => {
+  //请求错误时做些事
+  // if (error.response.status===401){
+  //
+  // }
+  store.commit('loadingOver');
+  return Promise.reject(error)
+});
+
+export default api

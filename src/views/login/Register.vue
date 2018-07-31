@@ -48,6 +48,7 @@
     }
   })
   export default class Register extends Vue {
+    $refs:any;
     @namespace('user').Action('phoneCode') phoneCode:any;
     @namespace('user').Action('register') register:any;
 
@@ -155,7 +156,6 @@
     myReset() {
       this.$refs["register"]["resetFields"]();
     };
-
     mounted() {
       this.$refs['register']['resetFields']();
     }
