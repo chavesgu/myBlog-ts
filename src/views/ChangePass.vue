@@ -16,7 +16,11 @@
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
 
-  @Component({})
+  @Component({
+    metaInfo:{
+      titleTemplate:'%s - ChangePass'
+    }
+  })
   export default class ChangePass extends Vue {
 
   }

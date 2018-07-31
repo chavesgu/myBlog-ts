@@ -19,7 +19,7 @@ const opt:RouterOptions = {
       path: '/login',
       name: 'login',
       redirect:{name:'signIn'},
-      component: Login,
+      component: ()=>import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
       children:[
         {
           path: 'register',
@@ -55,7 +55,7 @@ const opt:RouterOptions = {
             show:true,
             getInfo:true
           },
-          component:()=>import('@/views/Blog.vue'),
+          component:()=>import(/* webpackChunkName: "blog" */ '@/views/Blog.vue'),
         },
         {
           path:'article/:id',
@@ -65,7 +65,7 @@ const opt:RouterOptions = {
             show:false,
             getInfo:true
           },
-          component:()=>import('@/views/MyArticle.vue'),
+          component:()=>import(/* webpackChunkName: "Article" */ '@/views/MyArticle.vue'),
           beforeEnter: (to, from, next)=> {
             if (to.params.id && store.state.articleList.includes(to.params.id)) {
               next();
@@ -80,7 +80,7 @@ const opt:RouterOptions = {
           meta:{
             show:true
           },
-          component: ()=>import('@/views/About.vue')
+          component: ()=>import(/* webpackChunkName: "About" */ '@/views/About.vue')
         },
         {
           path: 'admin/:userName',
@@ -90,7 +90,7 @@ const opt:RouterOptions = {
             show:false,
             getInfo:true
           },
-          component: ()=>import('@/views/Admin.vue'),
+          component: ()=>import(/* webpackChunkName: "Admin" */ '@/views/Admin.vue'),
         },
         {
           path: 'changePass',

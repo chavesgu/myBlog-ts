@@ -27,7 +27,7 @@
 
   @Component({
     metaInfo: {
-      titleTemplate: '%s - signIn'
+      titleTemplate: '%s - SignIn'
     }
   })
   export default class SignIn extends Vue {

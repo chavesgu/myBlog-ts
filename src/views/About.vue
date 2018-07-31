@@ -32,7 +32,7 @@
 
   @Component({
     metaInfo:{
-      titleTemplate:'%s - about'
+      titleTemplate:'%s - About'
     }
   })
   export default class About extends Vue {
@@ -55,9 +55,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        a{
-          font-size: 16px;
-        }
+        font-size: 18px;
       }
       &:last-child{
         margin-bottom: 0;

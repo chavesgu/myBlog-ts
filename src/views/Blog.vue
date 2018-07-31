@@ -20,7 +20,7 @@
 
   @Component({
     metaInfo:{
-      titleTemplate:'%s - blog'
+      titleTemplate:'%s - Blog'
     }
   })
   export default class Blog extends Vue {

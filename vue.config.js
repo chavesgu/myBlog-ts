@@ -1,5 +1,7 @@
 const fs = require('fs');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
   // 项目部署的基础路径
   // 我们默认假设你的应用将会部署在域名的根部，
@@ -47,7 +49,8 @@ module.exports = {
                 pure_funcs:["console.clear"]
               }
             }
-          })
+          }),
+          new BundleAnalyzerPlugin()
         ]
       }
     }

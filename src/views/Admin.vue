@@ -34,7 +34,7 @@
 
   @Component({
     metaInfo:{
-      titleTemplate:'%s - admin'
+      titleTemplate:'%s - Admin'
     }
   })
   export default class Admin extends Vue {

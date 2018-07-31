@@ -44,7 +44,7 @@
   @Component({
     components: {SendCode},
     metaInfo: {
-      titleTemplate: '%s - register'
+      titleTemplate: '%s - Register'
     }
   })
   export default class Register extends Vue {

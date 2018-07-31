@@ -20,7 +20,7 @@
 
   @Component({
     metaInfo:{
-      titleTemplate:'%s - login'
+      titleTemplate:'%s - Login'
     }
   })
   export default class Login extends Vue {

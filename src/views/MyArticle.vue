@@ -17,7 +17,7 @@
 
   @Component({
     metaInfo:{
-      titleTemplate:'%s - article'
+      titleTemplate:'%s - Article'
     }
   })
   export default class MyArticle extends Vue {

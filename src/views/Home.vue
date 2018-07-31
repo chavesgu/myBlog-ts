@@ -31,7 +31,6 @@ export default class Home extends Vue {
   $echarts:any;
   @namespace('user').Action('login') login:any;
 
-  msg = 'Welcome to Your Vue.js + TypeScript App';
 
   mounted(){
     let option = {
@@ -44,7 +43,8 @@ export default class Home extends Vue {
         }
       },
       legend:{
-        top:80
+        top:100,
+        data:['line1','bar1','bar2']
       },
       grid:{
         top:150
@@ -54,10 +54,16 @@ export default class Home extends Vue {
       },
       xAxis: {
         type: 'category',
+        axisTick:{
+          alignWithLabel:true
+        },
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        axisLabel:{
+          showMinLabel:false
+        }
       },
       series: [
         {
@@ -83,7 +89,8 @@ export default class Home extends Vue {
     let option2 = {
       legend:{
         orient: 'vertical',
-        right:0
+        right:10,
+        data:['type1','type2','type3','type4','type5']
       },
       tooltip:{
         enabled:true
