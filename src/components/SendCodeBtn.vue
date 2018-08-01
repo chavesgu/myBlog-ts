@@ -24,11 +24,11 @@
     }
 
     send(){
-      this.sendingCode = true;
-      this.sendTime = 30;
       this.$emit('click');
     };
     startTimer() {//重新发送短信验证码计时器
+      this.sendingCode = true;
+      this.sendTime = 30;
       this.timer = setInterval(() => {
         this.sendTime--;
         if (this.sendTime <= 0) {

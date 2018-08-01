@@ -99,9 +99,9 @@
     };
 
     sendCode() {
-      this.phoneStatus = false;
       this.$refs["register"]['validateField']("phone",(err:any)=>{
         if (!err){
+          this.phoneStatus = false;
           this.phoneCode(this.registerInfo.phone).then((data:any)=>{
             if (!data.result) {
               this.$alert('Send Success',{
