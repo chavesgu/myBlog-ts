@@ -1,10 +1,5 @@
 <template>
-  <div class="loading-bar" :style="{
-        'width': percent + '%',
-        'height': height,
-        'background-color': color,
-        'opacity': show ? 1 : 0
-    }"></div>
+  <div class="loading-bar" :style="style"></div>
 </template>
 
 <script lang="ts">
@@ -20,15 +15,23 @@
     _timer:any = NaN;
     _cut:number = NaN;
 
-
-    get color():string{
-      if (this.percent===100){
-        return '#47e487'
+    get style():object{
+      let res = {
+        'width': this.percent + '%',
+        'height': this.height,
+        'opacity': this.show ? 1 : 0
+      };
+      if (this.percent===100&&this.canSuccess){
+        return Object.assign(res,{
+          'background-color': '#47e487',
+        })
       }
-      if (this.percent===0){
-        return '#ff0000'
+      if (!this.canSuccess){
+        return Object.assign(res,{
+          'background-color': '#ff0000',
+        })
       }
-      return ''
+      return res
     }
 
 
