@@ -40,7 +40,7 @@
       this.$router.push({name:url});
     };
     checkUrl(){
-      if (this.$route.name==='signIn'){
+      if (this.$route.name==='SignIn'){
         this['signInType'] = 'primary';
         this['registerType'] = '';
       }else {
