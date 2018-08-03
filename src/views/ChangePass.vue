@@ -1,9 +1,9 @@
 <template>
   <div class="changePass">
     <div class="tab">
-      <router-link :to="{name:'change-pass'}">原密码修改</router-link>
-      <router-link :to="{name:'change-mobile'}">手机修改</router-link>
-      <router-link :to="{name:'change-email'}">邮箱修改</router-link>
+      <router-link :to="{name:'Change-pass'}">原密码修改</router-link>
+      <router-link :to="{name:'Change-mobile'}">手机修改</router-link>
+      <router-link :to="{name:'Change-email'}">邮箱修改</router-link>
     </div>
     <transition name="fade" mode="out-in">
       <keep-alive>

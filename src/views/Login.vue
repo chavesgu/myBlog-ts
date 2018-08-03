@@ -3,8 +3,8 @@
     <router-link class="back" to="/">back to home</router-link>
     <div class="choose">
       <el-button-group>
-        <el-button @click="goTo('register')" :type="registerType">Register</el-button>
-        <el-button @click="goTo('signIn')" :type="signInType">Sign In</el-button>
+        <el-button @click="goTo('Register')" :type="registerType">Register</el-button>
+        <el-button @click="goTo('SignIn')" :type="signInType">Sign In</el-button>
       </el-button-group>
     </div>
     <div class="content">

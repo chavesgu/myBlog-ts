@@ -8,7 +8,7 @@
             text-color="#fff"
             @select="goPage">
       <router-link to="/" class="logo"><img src="../assets/images/logo.png" alt=""></router-link>
-      <router-link :to="{name:'signIn'}" class="signIn" v-if="!user">
+      <router-link :to="{name:'SignIn'}" class="signIn" v-if="!user">
         <i class="iconfont chaves-account"></i>
         <span>Sign In</span>
       </router-link>

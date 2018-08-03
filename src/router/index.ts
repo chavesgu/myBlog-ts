@@ -36,7 +36,7 @@ const opt:RouterOptions = {
       path:'/',
       name:'layout',
       component:Layout,
-      redirect:'Home',
+      redirect:'home',
       children:[
         {
           path:'home',
