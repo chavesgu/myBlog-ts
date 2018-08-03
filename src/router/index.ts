@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Router,{RouterOptions,RouteConfig} from 'vue-router'
-import store from '@/store/'
 import Layout from '../Layout.vue';
 import Home from '@/views/Home.vue';
-import Login from '@/views/Login.vue'
 import myCookie from '@/utils/cookie'
 import LoadingBar from '../components/LoadingBar.vue'
+
 // add loading-bar
 const loadingBar:any = Vue.prototype.$loadingBar = new Vue(LoadingBar).$mount();
 document.body.appendChild(loadingBar.$el);
@@ -17,18 +16,18 @@ const opt:RouterOptions = {
   routes: [
     {
       path: '/login',
-      name: 'login',
-      redirect:{name:'signIn'},
+      name: 'Login',
+      redirect:{name:'SignIn'},
       component: ()=>import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
       children:[
         {
           path: 'register',
-          name: 'register',
+          name: 'Register',
           component: ()=>import(/* webpackChunkName: "login" */ '@/views/login/Register.vue')
         },
         {
           path: 'signIn',
-          name: 'signIn',
+          name: 'SignIn',
           component: ()=>import(/* webpackChunkName: "login" */ '@/views/login/SignIn.vue')
         }
       ]
@@ -37,19 +36,20 @@ const opt:RouterOptions = {
       path:'/',
       name:'layout',
       component:Layout,
-      redirect:'home',
+      redirect:'Home',
       children:[
         {
           path:'home',
-          name:'home',
+          name:'Home',
           meta:{
-            show:true
+            show:true,
+            cache:true
           },
           component:Home,
         },
         {
           path:'blog',
-          name:'blog',
+          name:'Blog',
           meta:{
             check:true,
             show:true,
@@ -59,32 +59,26 @@ const opt:RouterOptions = {
         },
         {
           path:'article/:id',
-          name:'article',
+          name:'Article',
           meta:{
             check:true,
             show:false,
             getInfo:true
           },
-          component:()=>import(/* webpackChunkName: "Article" */ '@/views/MyArticle.vue'),
-          beforeEnter: (to, from, next)=> {
-            if (to.params.id && store.state.articleList.includes(to.params.id)) {
-              next();
-            }else {
-              next({name:'blog'});
-            }
-          }
+          component:()=>import(/* webpackChunkName: "Article" */ '@/views/MyArticle.vue')
         },
         {
           path: 'about',
-          name: 'about',
+          name: 'About',
           meta:{
-            show:true
+            show:true,
+            cache:true
           },
           component: ()=>import(/* webpackChunkName: "About" */ '@/views/About.vue')
         },
         {
           path: 'admin/:userName',
-          name:'admin',
+          name:'Admin',
           meta:{
             check:true,
             show:false,
@@ -94,16 +88,16 @@ const opt:RouterOptions = {
         },
         {
           path: 'changePass',
-          name: 'changePass',
+          name: 'ChangePass',
           meta:{
             show: false
           },
-          redirect:{name:'change-pass'},
+          redirect:{name:'Change-pass'},
           component: ()=>import(/* webpackChunkName: "changepass" */ '@/views/ChangePass.vue'),
           children:[
             {
               path:'pass',
-              name:'change-pass',
+              name:'Change-pass',
               meta:{
                 check: true,
                 show: false,
@@ -113,7 +107,7 @@ const opt:RouterOptions = {
             },
             {
               path:'mobile',
-              name:'change-mobile',
+              name:'Change-mobile',
               meta:{
                 check: true,
                 show: false,
@@ -123,7 +117,7 @@ const opt:RouterOptions = {
             },
             {
               path:'email',
-              name:'change-email',
+              name:'Change-email',
               meta:{
                 check: true,
                 show: false,
@@ -193,9 +187,19 @@ router.afterEach((to, from) => {
   loadingBar.finish();
 });
 
+const cachePages:string[] = [];
 const getCachePages = (routes:RouteConfig[]) =>{
-
+  for (let item of routes) {
+    if (item.meta&&item.meta.cache){
+      if(cachePages.indexOf(item.name as string)===-1)cachePages.push(item.name as string);
+    }
+    if (item.children&&item.children.length>0){
+      getCachePages(item.children)
+    }
+  }
 };
 getCachePages(opt.routes as RouteConfig[]);
+
+export {cachePages};
 
 export default router;

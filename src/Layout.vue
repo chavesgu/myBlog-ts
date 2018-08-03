@@ -5,7 +5,7 @@
     </keep-alive>
     <div class="main">
       <transition name="fade" mode="out-in">
-        <keep-alive :include="['About']">
+        <keep-alive :include="$store.state.cachePages">
           <router-view/>
         </keep-alive>
       </transition>

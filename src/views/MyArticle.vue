@@ -21,13 +21,13 @@
     }
   })
   export default class MyArticle extends Vue {
-    animate:boolean=true;
-    bgWidth:number=0;
-    wordTop:number=100;
-    tweenOpen:any=undefined;
-    tweenTop:any=undefined;
-    loadWord:boolean=false;
-    wordContent:any='';
+    animate:boolean = true;
+    bgWidth:number = 0;
+    wordTop:number = 100;
+    tweenOpen:any = undefined;
+    tweenTop:any = undefined;
+    loadWord:boolean = false;
+    wordContent:any = '';
 
     get bg(){
       return this.$store.state.articleBgList[this.$store.state.articleList.indexOf(this.$route.params['id'])%this.$store.state.articleBgList.length];
@@ -56,6 +56,14 @@
           _this.animate = false;
         })
       });
+    }
+
+    beforeEnter(to:any, from:any, next:any) {
+      if (to.params.id && this.$store.state.articleList.includes(to.params.id)) {
+        next();
+      }else {
+        next({name:'blog'});
+      }
     }
   }
 </script>

@@ -2,10 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store/'
 import router from './router/'
+import './vue-class-config'
 import './element'
 import './echarts'
 import './utils/directive';
 import VueMeta from 'vue-meta'
+
 
 // import css
 import "./assets/reset.css";

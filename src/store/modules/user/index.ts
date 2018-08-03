@@ -21,6 +21,7 @@ const mutations:MutationTree<State> = {
 
 
 const test:Module<State,RootState> = {
+  namespaced:true,
   state,
   getters,
   mutations,

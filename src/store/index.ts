@@ -11,7 +11,6 @@ let modules:any = {};// 最终modules对象
 for (let val of filenames){ // 遍历store下获取到的文件
   let res = files(val);// 获取文件里面的输出内容
   let moduleVal:any = {};
-  moduleVal.namespaced = true;
   let name:string = val.replace(/^\.\//, '').replace(/\.ts$/, '').split('/')[0];// 截取name
   modules[name] = Object.assign(moduleVal, res.default);
 }
@@ -32,7 +31,8 @@ const option:StoreOptions<RootState> = {
       'c19930903-8',
       'c19930903-9',
       'c19930903-10',
-    ]
+    ],
+    cachePages:[]
   },
   getters:{
 
@@ -43,6 +43,10 @@ const option:StoreOptions<RootState> = {
     },
     loadingOver(state:RootState){
       state.globalLoad = false;
+    },
+    setCachePages(state:RootState,arr){
+      let res:any = state.cachePages;
+      state.cachePages = res.concat(arr);
     }
   },
   actions: {

@@ -5,5 +5,6 @@ export interface RootState{
   version: string;
   globalLoad: boolean;
   articleBgList:string[];
-  articleList:any
+  articleList:any;
+  cachePages?:string[];
 }
