@@ -15,9 +15,9 @@
         </el-upload>
         <p class="file-txt" v-if="file!==null">{{file.name}}</p>
         <div class="progress">
-          <el-progress :percentage="uploadPercent" :color="progressColor" :stroke-width="10" v-if="file!==null"></el-progress>
+          <el-progress :percentage="uploadPercent" :color="progressColor" :stroke-width="10" v-if="file!==''"></el-progress>
         </div>
-        <el-button type="primary" :disabled="!canUpload" @click="startUpload">开始上传</el-button>
+        <el-button type="primary" :disabled="!canUpload" @click="startUpload" v-if="file!==''">开始上传</el-button>
       </div>
     </div>
     <div class="change-password">
@@ -80,7 +80,8 @@
       return false
     };
     startUpload(){
-      let newfile = new File([this.file ], this.filename,{type:"image/jpg"});
+      let newfile = new File([this.file], this.filename,{type:"image/jpg"});
+      console.log(newfile)
 
       let observable = qiniu.upload(
         newfile,
@@ -101,6 +102,14 @@
         error(err:any){
           // ...
           console.log(err);
+          _this.file = '';
+          _this.filename = '';
+          _this.canUpload = false;
+          _this.uploadPercent = 0;
+          _this.$alert(err.msg,{
+            title:'Message',
+            type:'error'
+          })
         },
         complete(res:any){
           // ...
@@ -117,6 +126,7 @@
               })
             }
             _this.file = '';
+            _this.filename = '';
             _this.canUpload = false;
             _this.uploadPercent = 0;
           });

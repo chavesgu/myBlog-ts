@@ -1,15 +1,20 @@
 <template>
   <div class="hello">
-    <h2 class="title">$store→state→testData:{{$store.state.testData}}</h2>
 
 
-    <div class="chart" ref="chart1" style="width: 900px;height: 500px;">
+    <h1>{{radioResult}}</h1>
 
+    <el-radio v-model="radioResult" label="yes">yes</el-radio>
+    <el-radio v-model="radioResult" label="no">no</el-radio>
+
+    <div class="chart-wrap">
+      <div class="chart" ref="chart1" style="width: 60%;height: 100%;">
+
+      </div>
+      <div class="chart" ref="chart2" style="width: 40%;height: 100%;">
+
+      </div>
     </div>
-    <div class="chart" ref="chart2" style="width: 500px;height: 200px;">
-
-    </div>
-
     <div class="beian">
       <div class="botBeiAn"><a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">沪ICP备17017527号-1 </a></div>
       <div class="gov"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32092502000073" target="_blank"><img
@@ -31,6 +36,7 @@ export default class Home extends Vue {
   $echarts:any;
   @namespace('user').Action('login') login:any;
 
+  radioResult = 'yes';
 
   mounted(){
     let option = {
@@ -87,10 +93,20 @@ export default class Home extends Vue {
     myChart.setOption(option);
 
     let option2 = {
+      title:{
+        text:'Echarts is so cool',
+        x:'center',
+        textStyle:{
+          fontSize:28
+        }
+      },
       legend:{
         orient: 'vertical',
         right:10,
         data:['type1','type2','type3','type4','type5']
+      },
+      grid:{
+        top:200
       },
       tooltip:{
         enabled:true
@@ -105,7 +121,7 @@ export default class Home extends Vue {
             {value:10,name:'type5'}
           ],
           type: 'pie',
-          radius:['30%','75%'],
+          radius:['20%','45%'],
           selectedMode:true
         }
       ]
@@ -120,8 +136,13 @@ export default class Home extends Vue {
   .hello{
     height: 100%;
     position: relative;
-    h2{
+    h1{
       color: $--color-info;
+      font-size: 40px;
+    }
+    .chart-wrap{
+      display: flex;
+      height: 500px;
     }
     .beian{
       position: absolute;

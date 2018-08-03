@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router,{RouterOptions} from 'vue-router'
+import Router,{RouterOptions,RouteConfig} from 'vue-router'
 import store from '@/store/'
 import Layout from '../Layout.vue';
 import Home from '@/views/Home.vue';
@@ -173,7 +173,10 @@ router.beforeEach((to, from, next)=>{
     if (myCookie.getItem("user")) {
       if (to.meta.getInfo){
         router.app.$store.dispatch('user/getUserInfo')
-          .then(_=>next()).catch(_=>next());
+          .then(_=>next())
+          .catch(_=>{
+            next({name:'signIn',replace:true,query:{redirect:to.name as string}})
+          });
       }else {
         next();
       }
@@ -190,5 +193,9 @@ router.afterEach((to, from) => {
   loadingBar.finish();
 });
 
+const getCachePages = (routes:RouteConfig[]) =>{
+
+};
+getCachePages(opt.routes as RouteConfig[]);
 
 export default router;

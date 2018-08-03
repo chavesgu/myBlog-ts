@@ -14,8 +14,8 @@ const getters:GetterTree<State,RootState> = {
 };
 
 const mutations:MutationTree<State> = {
-  setUserInfo(state,{info}:State){
-    state.info = info
+  setUserInfo(state,{result}){
+    state.info = result
   }
 };
 

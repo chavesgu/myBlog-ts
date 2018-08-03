@@ -2,6 +2,7 @@ import {ActionTree,ActionContext} from 'vuex'
 import {State} from "./types";
 import {RootState} from "@/store/types";
 import * as User from '@/services/user';
+import myCookie from '@/utils/cookie'
 import {
   Login,
   Register,
@@ -20,7 +21,7 @@ const actions:ActionTree<State,RootState> = {
   },
 
   async getUserInfo({commit}){
-    let data = await User.GET_INFO();
+    let data:any = await User.GET_INFO();
     commit('setUserInfo',data)
   },
 
@@ -48,7 +49,7 @@ const actions:ActionTree<State,RootState> = {
     return User.OLD_CHANGE_PASS(opt);
   },
 
-  async qiniuToken({},filename?:string){
+  async qiniuToken({},filename:string = myCookie.getItem('user')+'.jpg'){
     return User.QINIU_TOKEN(filename);
   }
 };

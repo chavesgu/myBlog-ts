@@ -16,7 +16,7 @@ export const USER_LOGIN = ({user,password}:Login) => {
 };//登录接口
 
 export const GET_INFO = () => {
-  return api.get('/getUserInfo');
+  return api.get('/user/info');
 };//获取用户信息接口
 
 export const UPDATE_INFO = (opt:UpdateUserInfo) =>{
@@ -40,6 +40,6 @@ export const OLD_CHANGE_PASS = ({oldPass,newPass}:OldChangePass) => {
 };//原密码修改密码接口
 
 
-export const QINIU_TOKEN = (filename?:string) =>{
+export const QINIU_TOKEN = (filename:string) =>{
   return api.post('/user/qiniu',{filename})
 };//获取上传头像权限

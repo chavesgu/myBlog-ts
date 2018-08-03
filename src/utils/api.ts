@@ -1,7 +1,9 @@
 import Axios,{AxiosInstance} from 'axios'
 import qs from 'qs';
 import store from '../store/'
-
+import Vue from 'vue'
+import myCookie from './cookie'
+import router from '../router/'
 
 const api:AxiosInstance = Axios.create({
   baseURL: process.env.NODE_ENV==="development"?'/api':'https://admin.chavesgu.com',
@@ -19,9 +21,9 @@ const api:AxiosInstance = Axios.create({
   //   // }],
 
   // `headers` are custom headers to be sent
-  headers: {
-    'X-Requested-With': 'XMLHttpRequest'
-  },
+  // headers: {
+  //   'X-Requested-With': 'XMLHttpRequest'
+  // },
 
   // `params` are the URL parameters to be sent with the request
   // Must be a plain object or a URLSearchParams object
@@ -45,11 +47,11 @@ const api:AxiosInstance = Axios.create({
 
   // `withCredentials` indicates whether or not cross-site Access-Control requests
   // should be made using credentials
-  withCredentials: true, // default
+  // withCredentials: true, // default
 
   // `responseType` indicates the type of data that the server will respond with
   // options are 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
-  responseType: 'json', // default
+  // responseType: 'json', // default
 
   // `onUploadProgress` allows handling of progress events for uploads
   // onUploadProgress: function (progressEvent) {
@@ -90,11 +92,22 @@ api.interceptors.response.use(response => {
   return response.data
 }, error => {
   //请求错误时做些事
-  // if (error.response.status===401){
-  //
-  // }
+  if (error.response.status===401){
+    Vue.prototype.$alert(error.response.data.msg,{
+      type:error.response.data.type,
+      title:'Message',
+      callback(){
+        if (myCookie.removeItem('user')){
+          router.replace({name:'signIn'});
+          console.clear();
+        }
+      }
+    })
+  }
   store.commit('loadingOver');
   return Promise.reject(error)
 });
+
+api.defaults.withCredentials = true;
 
 export default api
