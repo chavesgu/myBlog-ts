@@ -3,6 +3,7 @@ export interface State {
     user?:string,
     photo?:string,
     email?:string,
-    phone?:number
-  }|null
+    phone?:number,
+  }|null,
+  needUpdateInfo:boolean
 }

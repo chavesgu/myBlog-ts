@@ -66,7 +66,7 @@
                   if (_this.$route.query["redirect"]&&_this.$route.query["redirect"]!=='admin') {
                     _this.$router.replace({name:_this.$route.query["redirect"]});
                   }else {
-                    _this.$router.replace({name: 'admin', params: {userName: data.userInfo.name as string}});
+                    _this.$router.replace({name: 'Admin', params: {userName: data.userInfo.name as string}});
                   }
                 }
               }

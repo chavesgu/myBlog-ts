@@ -3,7 +3,7 @@
     <h1 style="line-height: 30px;">account:{{user}}</h1>
     <div class="photo">
       <div class="pic">
-        <img :src="info.photo" ref="photo" alt="" v-if="info.photo">
+        <img :src="info.photo" ref="photo" alt="" v-if="info">
         <i class="iconfont chaves-profile1" v-else></i>
       </div>
       <div class="upload">
@@ -13,7 +13,7 @@
                    action="https://admin.chavesgu.com/upload">
           <el-button size="large">更换头像图片</el-button>
         </el-upload>
-        <p class="file-txt" v-if="file!==null">{{file.name}}</p>
+        <p class="file-txt" v-if="file!==''">{{file.name}}</p>
         <div class="progress">
           <el-progress :percentage="uploadPercent" :color="progressColor" :stroke-width="10" v-if="file!==''"></el-progress>
         </div>
@@ -146,7 +146,19 @@
       })
     };
     changePass(){
-      this.$router.push({name:'changePass'})
+      this.$router.push({name:'ChangePass'})
+    };
+
+    created(){
+      this.getUserInfo();
+    }
+
+    beforeRouteEnter (to:any, from:any, next:any) {
+      if (to.params.userName&&to.params.userName===myCookie.getItem("user")) {
+        next();
+      }else {
+        next({name:'Admin',params:{userName:myCookie.getItem("user")}});
+      }
     }
   }
 </script>

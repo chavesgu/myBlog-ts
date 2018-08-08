@@ -96,12 +96,10 @@ api.interceptors.response.use(response => {
     Vue.prototype.$alert(error.response.data.msg,{
       type:error.response.data.type,
       title:'Message',
-      callback(){
-        if (myCookie.removeItem('user')){
-          router.replace({name:'signIn'});
-          console.clear();
-        }
-      }
+    }).then(()=>{
+      myCookie.removeItem('user');
+      router.push({name:'SignIn'});
+      console.clear();
     })
   }
   store.commit('loadingOver');

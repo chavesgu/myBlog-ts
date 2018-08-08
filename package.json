@@ -22,8 +22,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@types/tween.js": "^16.9.0",
     "@types/qs": "^6.5.1",
+    "@types/tween.js": "^16.9.0",
     "@types/webpack": "^4.4.7",
     "@types/webpack-env": "^1.13.6",
     "@vue/cli-plugin-babel": "^3.0.0-rc.5",
@@ -33,10 +33,11 @@
     "babel-plugin-equire": "^1.1.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "node-sass": "^4.9.0",
+    "prerender-spa-plugin": "^3.2.1",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.16",
     "vuex-class": "^0.3.1",
-    "webpack-bundle-analyzer":"^2.13.1"
+    "webpack-bundle-analyzer": "^2.13.1"
   },
   "browserslist": [
     "> 1%",

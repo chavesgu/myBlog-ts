@@ -1,14 +1,17 @@
 import Vue from 'vue'
-import Router,{RouterOptions,RouteConfig} from 'vue-router'
+import Router,{RouterOptions,RouteConfig,Route} from 'vue-router'
 import Layout from '../Layout.vue';
 import Home from '@/views/Home.vue';
 import myCookie from '@/utils/cookie'
-import LoadingBar from '../components/LoadingBar.vue'
+import store from '../store/index'
 
-// add loading-bar
-const loadingBar:any = Vue.prototype.$loadingBar = new Vue(LoadingBar).$mount();
-document.body.appendChild(loadingBar.$el);
-Vue.use(Router);
+// const beforeEnter = (to:Route,from:Route,next:any) =>{
+//   store.dispatch('user/getUserInfo')
+//     .then(()=>next())
+//     .catch(()=>{
+//       next({name:'SignIn',replace:true,query:{redirect:to.name as string}})
+//     });
+// };
 
 const opt:RouterOptions = {
   base:'/',
@@ -56,6 +59,7 @@ const opt:RouterOptions = {
             getInfo:true
           },
           component:()=>import(/* webpackChunkName: "blog" */ '@/views/Blog.vue'),
+          // beforeEnter
         },
         {
           path:'article/:id',
@@ -65,7 +69,8 @@ const opt:RouterOptions = {
             show:false,
             getInfo:true
           },
-          component:()=>import(/* webpackChunkName: "Article" */ '@/views/MyArticle.vue')
+          component:()=>import(/* webpackChunkName: "Article" */ '@/views/MyArticle.vue'),
+          // beforeEnter
         },
         {
           path: 'about',
@@ -85,6 +90,7 @@ const opt:RouterOptions = {
             getInfo:true
           },
           component: ()=>import(/* webpackChunkName: "Admin" */ '@/views/Admin.vue'),
+          // beforeEnter
         },
         {
           path: 'changePass',
@@ -103,7 +109,8 @@ const opt:RouterOptions = {
                 show: false,
                 getInfo:true
               },
-              component:()=>import(/* webpackChunkName: "changepass" */ '@/views/changePass/OldPass.vue')
+              component:()=>import(/* webpackChunkName: "changepass" */ '@/views/changePass/OldPass.vue'),
+              // beforeEnter
             },
             {
               path:'mobile',
@@ -113,7 +120,8 @@ const opt:RouterOptions = {
                 show: false,
                 getInfo:true
               },
-              component:()=>import(/* webpackChunkName: "changepass" */ '@/views/changePass/Mobile.vue')
+              component:()=>import(/* webpackChunkName: "changepass" */ '@/views/changePass/Mobile.vue'),
+              // beforeEnter
             },
             {
               path:'email',
@@ -123,7 +131,8 @@ const opt:RouterOptions = {
                 show: false,
                 getInfo:true
               },
-              component:()=>import(/* webpackChunkName: "changepass" */ '@/views/changePass/Email.vue')
+              component:()=>import(/* webpackChunkName: "changepass" */ '@/views/changePass/Email.vue'),
+              // beforeEnter
             },
           ]
         }
@@ -155,27 +164,29 @@ const opt:RouterOptions = {
   }
 };
 
+Vue.use(Router);
 const router = new Router(opt);
 
 router.beforeEach((to, from, next)=>{
-  loadingBar.start();
-  if (to.name==='signIn'&&myCookie.getItem("user")) {
-    next({name:'admin',params:{userName:myCookie.getItem("user")as string}});
+  const store:any = router.app.$options.store;
+  if (to.name==='SignIn'&&myCookie.getItem("user")) {
+    next({name:'Admin',params:{userName:myCookie.getItem("user")as string}});
     return
   }
   if (to.meta.check){
     if (myCookie.getItem("user")) {
-      if (to.meta.getInfo){
-        router.app.$store.dispatch('user/getUserInfo')
-          .then(_=>next())
-          .catch(_=>{
-            next({name:'signIn',replace:true,query:{redirect:to.name as string}})
+      if (to.meta.getInfo && store.state.user.needUpdateInfo){
+        store.dispatch('user/getUserInfo')
+          .then(()=>next())
+          .catch(()=>{
+            next({name:'SignIn',replace:true,query:{redirect:to.name as string}})
           });
       }else {
         next();
       }
+      // next()
     }else {
-      next({name:'signIn',replace:true,query:{redirect:to.name as string}});
+      next({name:'SignIn',replace:true,query:{redirect:to.name as string}});
     }
   } else {
     next()
@@ -184,7 +195,7 @@ router.beforeEach((to, from, next)=>{
 
 router.afterEach((to, from) => {
   // ...
-  loadingBar.finish();
+
 });
 
 const cachePages:string[] = [];
@@ -199,7 +210,15 @@ const getCachePages = (routes:RouteConfig[]) =>{
   }
 };
 getCachePages(opt.routes as RouteConfig[]);
+// store.commit('setCachePages',cachePages);
+
+
+setTimeout(()=>{
+  //console.log(store);//不加settimeout   就是undefined
+  store.commit('setCachePages',cachePages);
+},0);
 
 export {cachePages};
 
 export default router;
+

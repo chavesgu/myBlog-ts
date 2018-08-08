@@ -1,12 +1,14 @@
 <template>
   <div class="article" :style="{background:bg,width:bgWidth+'%'}">
-    <div v-loading="loadWord" class="word" :style="{transform:`translateY(${wordTop}vh)`}">
+    <div v-loading="loadWord" class="word"
+         :style="{
+          transform:`translateY(${wordTop}vh)`,
+          'box-shadow': `0 3px 20px 0 ${bg} inset,0 -3px 10px 0 ${bg} inset`
+         }">
       <div class="container" v-html="wordContent" v-prism>
 
       </div>
-      <router-link class="close" :to="{name:'blog'}" :style="{color:bg}">
-        <i class="iconfont chaves-close1"></i>
-      </router-link>
+      <i class="close iconfont chaves-close1" :style="{color:bg}" @click="$router.push({name:'Blog'})"></i>
     </div>
   </div>
 </template>
@@ -14,6 +16,7 @@
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
   import TWEEN from '@tweenjs/tween.js'
+  import store from '@/store/'
 
   @Component({
     metaInfo:{
@@ -58,8 +61,8 @@
       });
     }
 
-    beforeEnter(to:any, from:any, next:any) {
-      if (to.params.id && this.$store.state.articleList.includes(to.params.id)) {
+    beforeRouteEnter(to:any, from:any, next:any) {
+      if (to.params.id && store.state.articleList.includes(to.params.id)) {
         next();
       }else {
         next({name:'blog'});
@@ -78,7 +81,6 @@
       background: #fff;
       margin: 0 auto;
       position: relative;
-      box-shadow: 0 3px 20px 0 rgba(84,144,255,1) inset,0 -3px 10px 0 rgba(84,144,255,1) inset;
       .container{
         position: absolute;
         width: 100%;
@@ -86,15 +88,14 @@
         left: 0;
         height: 200vh;
       }
-      a.close{
+      i.close{
         position: absolute;
         width: 34px;
         height: 34px;
         top: 20px;
         right: 20px;
-        i{
-          font-size: 30px;
-        }
+        font-size: 30px;
+        cursor: pointer;
       }
     }
   }

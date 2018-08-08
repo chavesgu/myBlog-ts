@@ -8,8 +8,6 @@
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator'
-  import {Mutation} from 'vuex-class'
-  import {cachePages} from './router/'
 
   @Component({
     metaInfo:{
@@ -17,10 +15,7 @@
     }
   })
   export default class App extends Vue {
-    @Mutation('setCachePages') setCachePages:Function;
-    mounted(){
-      this.setCachePages(cachePages)
-    }
+
   }
 </script>
 

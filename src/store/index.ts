@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex,{StoreOptions} from 'vuex'
 import {RootState} from './types'
+// import user from './modules/user/'
 
-Vue.use(Vuex)
 
 const files = require.context('@/store/modules/', true, /^\.\/.*\/index\.ts$/);
 const filenames = files.keys();
@@ -56,4 +56,10 @@ const option:StoreOptions<RootState> = {
   modules
 };
 
-export default new Vuex.Store<RootState>(option)
+
+Vue.use(Vuex);
+const store = new Vuex.Store<RootState>(option);
+
+
+
+export default store

@@ -21,12 +21,24 @@ const actions:ActionTree<State,RootState> = {
   },
 
   async getUserInfo({commit}){
-    let data:any = await User.GET_INFO();
-    commit('setUserInfo',data)
+    try {
+      let data:any = await User.GET_INFO();
+      commit('setUpdateInfo',false);
+      commit('setUserInfo',data);
+      return data
+    }catch (e) {
+      return e
+    }
   },
 
   async saveUserInfo({commit},opt:UpdateUserInfo){
-    return User.UPDATE_INFO(opt);
+    try {
+      let data:any = await User.UPDATE_INFO(opt);
+      commit('setUpdateInfo',true);
+      return data
+    }catch (e) {
+      return e
+    }
   },
 
   async phoneCode({},phone:number){

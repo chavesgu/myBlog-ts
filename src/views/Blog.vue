@@ -2,7 +2,7 @@
   <div class="blog">
     <transition-group tag="div" name="blogList" class="blogList">
       <router-link v-if="articleList.length" v-for="(item,index) in articleList"
-                   :key="index" :to="{name:'article',params:{id:item}}"
+                   :key="index" :to="{name:'Article',params:{id:item}}"
                    class="blogItem">
         <div class="bg" :style="{background:articleBgList[index%articleBgList.length]}">
           <div class="content">

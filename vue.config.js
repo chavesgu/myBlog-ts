@@ -1,6 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 module.exports = {
   // 项目部署的基础路径
@@ -16,7 +18,7 @@ module.exports = {
   outputDir: 'dist',
 
   // 放置静态资源的地方 (js/css/img/font/...)
-  // assetsDir: '',
+  assetsDir: 'static',
 
   // 是否在保存的时候使用 `eslint-loader` 进行检查。
   // 有效的值：`ture` | `false` | `"error"`
@@ -50,7 +52,13 @@ module.exports = {
               }
             }
           }),
-          new BundleAnalyzerPlugin()
+          new BundleAnalyzerPlugin(),
+          // new PrerenderSPAPlugin({
+          //   // Required - The path to the webpack-outputted app to prerender.
+          //   staticDir: path.join(__dirname, 'dist'),
+          //   // Required - Routes to render.
+          //   routes: [ '/', '/home', '/about', '/blog'],
+          // })
         ]
       }
     }
