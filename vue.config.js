@@ -52,13 +52,20 @@ module.exports = {
               }
             }
           }),
-          new BundleAnalyzerPlugin(),
-          // new PrerenderSPAPlugin({
-          //   // Required - The path to the webpack-outputted app to prerender.
-          //   staticDir: path.join(__dirname, 'dist'),
-          //   // Required - Routes to render.
-          //   routes: [ '/', '/home', '/about', '/blog'],
-          // })
+          // new BundleAnalyzerPlugin(),
+          new PrerenderSPAPlugin({
+            // Required - The path to the webpack-outputted app to prerender.
+            staticDir: path.join(__dirname, 'dist'),
+            // Required - Routes to render.
+            routes: ['/home', '/about', '/blog', '/login'],
+            minify: {
+              collapseBooleanAttributes: true,
+              collapseWhitespace: true,
+              decodeEntities: true,
+              keepClosingSlash: true,
+              sortAttributes: true
+            }
+          })
         ]
       }
     }

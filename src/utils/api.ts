@@ -83,6 +83,7 @@ api.interceptors.request.use(config => {
   return config
 }, error => {
   //请求错误时做些事
+  store.commit('loadingOver');
   return Promise.reject(error)
 });
 //添加响应拦截器
