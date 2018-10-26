@@ -18,7 +18,7 @@
         <span>微信二维码</span>
       </p>
       <div style="text-align:center">
-        <img src="//images.chavesgu.com/wechat.jpg" alt="" style="width: 100%;">
+        <img src="//cdn.chavesgu.com/wechat.jpg" alt="" style="width: 100%;">
       </div>
       <div slot="footer">
         <el-button type="primary" size="large" long @click="wechat = false">确认</el-button>

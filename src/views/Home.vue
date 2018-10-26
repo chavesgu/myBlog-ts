@@ -18,7 +18,7 @@
     <div class="beian">
       <div class="botBeiAn"><a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">沪ICP备17017527号-1 </a></div>
       <div class="gov"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32092502000073" target="_blank"><img
-              src="//images.chavesgu.com/ghs.png" alt="">苏公网安备 32092502000073号</a></div>
+              src="//cdn.chavesgu.com/ghs.png" alt="">苏公网安备 32092502000073号</a></div>
     </div>
   </div>
 </template>
